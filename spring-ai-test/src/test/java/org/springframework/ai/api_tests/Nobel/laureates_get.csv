@@ -1,0 +1,3 @@
+offset,limit,sort,ID,name,gender,motivation,affiliation,residence,birthDate,birthDateTo,deathDate,deathDateTo,foundedDate,birthCity,birthCountry,birthContinent,deathCity,deathCountry,deathContinent,foundedCity,foundedCountry,foundedContinent,headquartersCity,headquartersCountry,headquartersContinent,nobelPrizeYear,yearTo,nobelPrizeCategory
+"1","10","asc","2","John","male","Work","Univ","Paris",1901,1910,"","","","London","England","Europe","","","","","","","","","","2000","2010","Peace"
+"2","5","desc","5","Marie","female","Research","Inst","Berlin",1923,1930,"","",1900,"Moscow","Russia","Asia","","","","","","","","","","1989","2000","Chemistry"
