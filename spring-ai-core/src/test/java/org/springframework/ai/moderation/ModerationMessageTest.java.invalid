@@ -1,0 +1,252 @@
+package org.springframework.ai.moderation;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api;
+import java.util.Objects;
+import org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Assertions.assertEquals; 
+ public class ModerationMessageTest {
+
+/*ROOST_METHOD_HASH=getText_5141af9b3b
+ROOST_METHOD_SIG_HASH=getText_5a895d3c65
+
+*/@Test
+@Tag("valid")
+public void getTextReturnsNullWhenFieldIsUnset() {
+    
+    ModerationMessage message = new ModerationMessage(null);
+    
+    String actualText = message.getText();
+    
+    assertNull(actualText, "Expected getText() to return null when text is unset");
+}
+
+/*ROOST_METHOD_HASH=getText_5141af9b3b
+ROOST_METHOD_SIG_HASH=getText_5a895d3c65
+
+*/@Test
+@Tag("valid")
+public void getTextReturnsValueWhenFieldIsSet() {
+    
+    
+    String expectedText = "Sample Text";
+    ModerationMessage message = new ModerationMessage(expectedText);
+    
+    String actualText = message.getText();
+    
+    assertEquals(expectedText, actualText, "Expected getText() to return the set text value");
+}
+
+/*ROOST_METHOD_HASH=getText_5141af9b3b
+ROOST_METHOD_SIG_HASH=getText_5a895d3c65
+
+*/@Test
+@Tag("boundary")
+public void getTextReturnsEmptyStringWhenFieldIsSetToEmptyString() {
+    
+    String expectedText = "";
+    ModerationMessage message = new ModerationMessage(expectedText);
+    
+    String actualText = message.getText();
+    
+    assertEquals(expectedText, actualText, "Expected getText() to return an empty string when text is explicitly set to empty");
+}
+
+/*ROOST_METHOD_HASH=getText_5141af9b3b
+ROOST_METHOD_SIG_HASH=getText_5a895d3c65
+
+*/@Test
+@Tag("invalid")
+public void getTextDoesNotBreakWhenNullValueIsSet() {
+    
+    String expectedText = null;
+    ModerationMessage message = new ModerationMessage(expectedText);
+    
+    String actualText = message.getText();
+    
+    assertNull(actualText, "Expected getText() to return null when null is explicitly set");
+}
+
+/*ROOST_METHOD_HASH=getText_5141af9b3b
+ROOST_METHOD_SIG_HASH=getText_5a895d3c65
+
+*/@Test
+@Tag("integration")
+public void getTextWorksForDifferentInputs() {
+    
+    String expectedText = "A simple moderating message";
+    ModerationMessage message = new ModerationMessage(expectedText);
+    
+    String actualText = message.getText();
+    
+    assertEquals(expectedText, actualText, "Expected getText() to return the right value across various valid inputs");
+}
+
+/*ROOST_METHOD_HASH=toString_18d2135bd3
+ROOST_METHOD_SIG_HASH=toString_bbffdadaa2
+
+*/@Test
+@Tag("valid")
+public void toStringReturnsFormattedStringWithValidText() {
+    
+    ModerationMessage moderationMessage = new ModerationMessage("Hello, World!");
+    
+    String result = moderationMessage.toString();
+    
+    assertEquals("ModerationMessage{text='Hello, World!'}", result);
+}
+
+/*ROOST_METHOD_HASH=toString_18d2135bd3
+ROOST_METHOD_SIG_HASH=toString_bbffdadaa2
+
+*/@Test
+@Tag("invalid")
+public void toStringReturnsFormattedStringWithNullText() {
+    
+    ModerationMessage moderationMessage = new ModerationMessage(null);
+    
+    String result = moderationMessage.toString();
+    
+    assertEquals("ModerationMessage{text='null'}", result);
+}
+
+/*ROOST_METHOD_HASH=toString_18d2135bd3
+ROOST_METHOD_SIG_HASH=toString_bbffdadaa2
+
+*/@Test
+@Tag("boundary")
+public void toStringReturnsFormattedStringWithEmptyText() {
+    
+    ModerationMessage moderationMessage = new ModerationMessage("");
+    
+    String result = moderationMessage.toString();
+    
+    assertEquals("ModerationMessage{text=''}", result);
+}
+
+/*ROOST_METHOD_HASH=toString_18d2135bd3
+ROOST_METHOD_SIG_HASH=toString_bbffdadaa2
+
+*/@Test
+@Tag("boundary")
+public void toStringReturnsFormattedStringWithWhitespaceText() {
+    
+    ModerationMessage moderationMessage = new ModerationMessage("   ");
+    
+    String result = moderationMessage.toString();
+    
+    assertEquals("ModerationMessage{text='   '}", result);
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("valid")
+public void verifyEqualityOfIdenticalInstances() {
+    ModerationMessage message1 = new ModerationMessage("testText");
+    ModerationMessage message2 = new ModerationMessage("testText");
+    boolean result = message1.equals(message2);
+    assertTrue(result, "Expected identical instances to be equal.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("invalid")
+public void verifyInequalityForDifferentTextValues() {
+    ModerationMessage message1 = new ModerationMessage("textOne");
+    ModerationMessage message2 = new ModerationMessage("textTwo");
+    boolean result = message1.equals(message2);
+    assertFalse(result, "Expected instances with different text values to be unequal.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("invalid")
+public void handleComparisonWithNull() {
+    ModerationMessage message = new ModerationMessage("testText");
+    boolean result = message.equals(null);
+    assertFalse(result, "Expected comparison with null to return false.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("valid")
+public void verifySelfComparisonReturnsTrue() {
+    ModerationMessage message = new ModerationMessage("testText");
+    boolean result = message.equals(message);
+    assertTrue(result, "Expected self-comparison to return true.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("invalid")
+public void verifyComparisonWithDifferentClassObjectsReturnsFalse() {
+    ModerationMessage message = new ModerationMessage("testText");
+    Object otherObject = new String("testText");
+    boolean result = message.equals(otherObject);
+    assertFalse(result, "Expected comparison with a different class type to return false.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("valid")
+public void verifyEqualityForTextSetToNull() {
+    ModerationMessage message1 = new ModerationMessage(null);
+    ModerationMessage message2 = new ModerationMessage(null);
+    boolean result = message1.equals(message2);
+    assertTrue(result, "Expected instances with both text set to null to be equal.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("invalid")
+public void verifyNonEqualityWhenOneTextIsNull() {
+    ModerationMessage messageWithNullText = new ModerationMessage(null);
+    ModerationMessage messageWithNonNullText = new ModerationMessage("validText");
+    boolean result = messageWithNullText.equals(messageWithNonNullText);
+    assertFalse(result, "Expected instances with one text set to null to be unequal.");
+}
+
+/*ROOST_METHOD_HASH=equals_9f7e4246da
+ROOST_METHOD_SIG_HASH=equals_ded257778a
+
+*/@Test
+@Tag("boundary")
+public void verifyEqualityForTextWithSpecialCharacters() {
+    ModerationMessage message1 = new ModerationMessage("!@#");
+    ModerationMessage message2 = new ModerationMessage("!@#");
+    boolean result = message1.equals(message2);
+    assertTrue(result, "Expected instances with identical text containing special characters to be equal.");
+}
+
+/*ROOST_METHOD_HASH=hashCode_8c73be2899
+ROOST_METHOD_SIG_HASH=hashCode_44411a81c8
+
+*/@Test
+@Tag("valid")
+public void verifyHashCodeConsistencyWithIdenticalObjects() {
+    
+    ModerationMessage message1 = new ModerationMessage("Sample text");
+    ModerationMessage message2 = new ModerationMessage("Sample text");
+    
+    int hashCode1 = message1.hashCode();
+    int hashCode2 = message2.hashCode();
+    
+    assertEquals(hashCode1, hashCode2, "Hash codes for identical objects should be equal.");
+}
+} 
