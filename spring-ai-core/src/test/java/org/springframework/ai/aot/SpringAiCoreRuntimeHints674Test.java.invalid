@@ -1,0 +1,139 @@
+package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.ExecutableMode;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.ReflectionUtils;
+import java.lang.reflect.Method;
+import java.util.Set;
+import org.junit.jupiter.api.Assertions;
+import org.springframework.ai.chat.messages.AbstractMessage;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.MessageType;
+import org.springframework.ai.chat.messages.SystemMessage;
+import org.springframework.ai.chat.messages.ToolResponseMessage;
+import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.model.function.DefaultFunctionCallbackResolver;
+import org.springframework.ai.model.function.FunctionCallback;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable; 
+ public class SpringAiCoreRuntimeHints674Test {
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void registerTypesInReflectionSuccessfully() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    Set<Class<?>> chatTypes = Set.of(AbstractMessage.class, AssistantMessage.class, ToolResponseMessage.class, Message.class, MessageType.class, UserMessage.class, SystemMessage.class, DefaultFunctionCallbackResolver.class, FunctionCallback.class);
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    chatTypes.forEach(type -> assertTrue(hints.reflection().isTypeRegistered(type), "Failed to register type in reflection configuration: " + type.getName()));
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void registerReflectionMethodsCorrectly() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    Method getDescription = ReflectionUtils.findMethod(FunctionCallback.class, "getDescription");
+    assertNotNull(getDescription, "Method 'getDescription' not found.");
+    Method getInputTypeSchema = ReflectionUtils.findMethod(FunctionCallback.class, "getInputTypeSchema");
+    assertNotNull(getInputTypeSchema, "Method 'getInputTypeSchema' not found.");
+    Method getName = ReflectionUtils.findMethod(FunctionCallback.class, "getName");
+    assertNotNull(getName, "Method 'getName' not found.");
+    assertTrue(hints.reflection().isMethodRegistered(getDescription, ExecutableMode.INVOKE), "Failed to register method 'getDescription' for invocation.");
+    assertTrue(hints.reflection().isMethodRegistered(getInputTypeSchema, ExecutableMode.INVOKE), "Failed to register method 'getInputTypeSchema' for invocation.");
+    assertTrue(hints.reflection().isMethodRegistered(getName, ExecutableMode.INVOKE), "Failed to register method 'getName' for invocation.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void registerResourcesProperly() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    Set<String> resources = Set.of("antlr4/org/springframework/ai/vectorstore/filter/antlr4/Filters.g4", "embedding/embedding-model-dimensions.properties");
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    resources.forEach(resourcePath -> assertTrue(hints.resources().isResourceRegistered(new ClassPathResource(resourcePath)), "Failed to register resource: " + resourcePath));
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void handleNullRuntimeHintsGracefully() {
+    
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    
+    assertThrows(NullPointerException.class, () -> runtimeHintsRegistrar.registerHints(null, null), "Expected NullPointerException when RuntimeHints is null.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void handleNullClassLoaderGracefully() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    assertNotNull(hints.reflection(), "Reflection hint configuration should not be null.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void validateSpecificMethodRegistration() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    Method getInputTypeSchema = ReflectionUtils.findMethod(FunctionCallback.class, "getInputTypeSchema");
+    assertNotNull(getInputTypeSchema, "Method 'getInputTypeSchema' not found.");
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    assertTrue(hints.reflection().isMethodRegistered(getInputTypeSchema, ExecutableMode.INVOKE), "Failed to register method 'getInputTypeSchema' for invocation.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void validateAllChatTypesRegistration() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    Set<Class<?>> chatTypes = Set.of(AbstractMessage.class, AssistantMessage.class, ToolResponseMessage.class, Message.class, MessageType.class, UserMessage.class, SystemMessage.class, DefaultFunctionCallbackResolver.class, FunctionCallback.class);
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    chatTypes.forEach(type -> assertTrue(hints.reflection().isTypeRegistered(type), "Failed to register type in reflection configuration: " + type.getName()));
+}
+
+/*ROOST_METHOD_HASH=registerHints_ba8143f1ec
+ROOST_METHOD_SIG_HASH=registerHints_8ed8822dbe
+
+*/public void handleEmptyResourceSetCorrectly() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    
+    runtimeHintsRegistrar.registerHints(hints, null);
+    
+    
+    assertTrue(hints.resources().resourcePatterns().isEmpty(), "Resource set should be empty under hypothetical scenario.");
+}
+} 
