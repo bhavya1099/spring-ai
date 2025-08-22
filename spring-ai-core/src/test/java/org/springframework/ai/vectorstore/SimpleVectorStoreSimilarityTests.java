@@ -1,18 +1,11 @@
+
+// ********RoostGPT********
 /*
- * Copyright 2023-2024 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
+roost_feedback [22/08/2025, 2:10:20 PM]:[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:testCompile (java-test-compile) on project spring-ai-core: Compilation failure: Compilation failure: \n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[185,9] not a statement\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[185,15] ; expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[185,46] not a statement\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[186,1] illegal start of expression\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[186,29] not a statement\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[187,1] illegal start of expression\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[187,29] not a statement\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[188,1] illegal start of expression\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[188,17] not a statement\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[189,1] illegal start of expression\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[189,8] illegal start of expression\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[189,48] <identifier> expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[190,1] illegal start of type\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[190,36] <identifier> expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[191,1] illegal start of type\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[191,24] <identifier> expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[192,1] illegal start of type\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[192,25] <identifier> expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[193,1] illegal start of type\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[193,25] <identifier> expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[194,1] illegal start of type\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[194,35] <identifier> expected\n[ERROR] /private/var/tmp/Roost/RoostGPT/java-unit-testing/1755848641/source/spring-ai/spring-ai-core/src/test/java/org/springframework/ai/aot/AiRuntimeHintsFindJsonAnnotatedClassesInPackageTest.java:[195,52] <identifier> expected\n
+*/
+
+// ********RoostGPT********
 
 package org.springframework.ai.vectorstore;
 
@@ -25,10 +18,6 @@ import org.springframework.ai.document.Document;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author Ilayaperumal Gopinathan
- * @author Thomas Vitale
- */
 public class SimpleVectorStoreSimilarityTests {
 
 	@Test
@@ -37,13 +26,14 @@ public class SimpleVectorStoreSimilarityTests {
 		metadata.put("foo", "bar");
 		float[] testEmbedding = new float[] { 1.0f, 2.0f, 3.0f };
 
-		SimpleVectorStoreContent storeContent = new SimpleVectorStoreContent("1", "hello, how are you?", metadata,
-				testEmbedding);
+		SimpleVectorStoreContent storeContent = new SimpleVectorStoreContent("1", "hello, how are you?", metadata, testEmbedding);
 		Document document = storeContent.toDocument(0.6);
+
 		assertThat(document).isNotNull();
 		assertThat(document.getId()).isEqualTo("1");
 		assertThat(document.getText()).isEqualTo("hello, how are you?");
+		assertThat(document.getMetadata()).isNotNull();
+		assertThat(document.getMetadata().size()).isEqualTo(1);
 		assertThat(document.getMetadata().get("foo")).isEqualTo("bar");
 	}
-
 }
