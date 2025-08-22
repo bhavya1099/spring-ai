@@ -1,0 +1,107 @@
+package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.core.io.ClassPathResource;
+import org.junit.jupiter.api.Assertions.assertTrue; 
+ public class KnuddelsRuntimeHints670Test {
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("valid")
+public void registerResourceHintsCorrectPath() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsRuntimeHints = new KnuddelsRuntimeHints();
+    
+    knuddelsRuntimeHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().resourceRegistrations().stream().anyMatch(resource -> resource.equals(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken"))), "Resource should be correctly registered");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("valid")
+public void registerHintsWithNullClassLoader() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsRuntimeHints = new KnuddelsRuntimeHints();
+    
+    knuddelsRuntimeHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().resourceRegistrations().stream().anyMatch(resource -> resource.equals(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken"))), "Resource should be registered even with a null ClassLoader");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("invalid")
+public void registerHintsForNonExistentResource() {
+    
+    
+    
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("boundary")
+public void registerHintsDoesNotOverwriteExistingHints() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    hints.resources().registerResource(new ClassPathResource("/existing/resource/path"));
+    KnuddelsRuntimeHints knuddelsRuntimeHints = new KnuddelsRuntimeHints();
+    
+    knuddelsRuntimeHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().resourceRegistrations().stream().anyMatch(resource -> resource.equals(new ClassPathResource("/existing/resource/path"))), "Existing resource should not be overwritten");
+    assertTrue(hints.resources().resourceRegistrations().stream().anyMatch(resource -> resource.equals(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken"))), "New resource should be registered without overwriting existing hints");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("valid")
+public void registerHintsWithEmptyRuntimeHints() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsRuntimeHints = new KnuddelsRuntimeHints();
+    
+    knuddelsRuntimeHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().resourceRegistrations().stream().anyMatch(resource -> resource.equals(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken"))), "Resource should be registered even in an empty RuntimeHints object");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("invalid")
+public void registerHintsWithMalformedResourcePath() {
+    
+    
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("valid")
+public void registerResourceTypeCorrectness() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsRuntimeHints = new KnuddelsRuntimeHints();
+    
+    knuddelsRuntimeHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().resourceRegistrations().stream().anyMatch(resource -> resource.equals(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken"))), "Resource should be registered as a ClassPathResource");
+}
+} 
