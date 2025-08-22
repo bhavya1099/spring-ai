@@ -1,0 +1,58 @@
+package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.util.ReflectionUtils;
+import java.lang.reflect.Method;
+import java.util.Set;
+import org.junit.jupiter.api;
+import org.springframework.ai.chat.messages.AbstractMessage;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.MessageType;
+import org.springframework.ai.chat.messages.SystemMessage;
+import org.springframework.ai.chat.messages.ToolResponseMessage;
+import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.model.function.DefaultFunctionCallbackResolver;
+import org.springframework.ai.model.function.FunctionCallback;
+import org.springframework.aot.hint.ExecutableMode;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable; 
+ public class SpringAiCoreRuntimeHints820Test {
+
+/*ROOST_METHOD_HASH=registerHints_a9eb20a924
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("valid")
+public void registerHintsForChatTypes() {
+    
+    RuntimeHints runtimeHints = mock(RuntimeHints.class);
+    RuntimeHints.ReflectionHints reflectionHints = mock(RuntimeHints.ReflectionHints.class);
+    RuntimeHints.ResourcesHints resourcesHints = mock(RuntimeHints.ResourcesHints.class);
+    when(runtimeHints.reflection()).thenReturn(reflectionHints);
+    when(runtimeHints.resources()).thenReturn(resourcesHints);
+    SpringAiCoreRuntimeHints runtimeHintsRegistrar = new SpringAiCoreRuntimeHints();
+    
+    runtimeHintsRegistrar.registerHints(runtimeHints, null);
+    
+    
+    Set<Class<?>> chatTypes = Set.of(AbstractMessage.class, AssistantMessage.class, ToolResponseMessage.class, Message.class, MessageType.class, UserMessage.class, SystemMessage.class, DefaultFunctionCallbackResolver.class, FunctionCallback.class);
+    for (Class<?> chatType : chatTypes) {
+        verify(reflectionHints).registerType(chatType);
+    }
+    
+    Method getDescription = ReflectionUtils.findMethod(FunctionCallback.class, "getDescription");
+    Method getInputTypeSchema = ReflectionUtils.findMethod(FunctionCallback.class, "getInputTypeSchema");
+    Method getName = ReflectionUtils.findMethod(FunctionCallback.class, "getName");
+    verify(reflectionHints).registerMethod(getDescription, ExecutableMode.INVOKE);
+    verify(reflectionHints).registerMethod(getInputTypeSchema, ExecutableMode.INVOKE);
+    verify(reflectionHints).registerMethod(getName, ExecutableMode.INVOKE);
+    
+    verify(resourcesHints).registerResource(Mockito.argThat(resource -> resource.getPath().equals("antlr4/org/springframework/ai/vectorstore/filter/antlr4/Filters.g4")));
+    verify(resourcesHints).registerResource(Mockito.argThat(resource -> resource.getPath().equals("embedding/embedding-model-dimensions.properties")));
+}
+} 
