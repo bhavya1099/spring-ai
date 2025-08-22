@@ -1,0 +1,144 @@
+package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.springframework.aot.hint.RuntimeHints;
+import org.springframework.core.io.ClassPathResource;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api;
+import org.springframework.aot.hint.RuntimeHintsRegistrar; 
+ public class KnuddelsRuntimeHints778Test {
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("valid")
+public void resourceRegistrationValidation() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    knuddelsHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().hasResource(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken")), "Resource should be registered correctly in RuntimeHints.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("valid")
+public void nullClassLoaderHandling() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    knuddelsHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().hasResource(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken")), "Resource should be registered even when the ClassLoader is null.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("boundary")
+public void ensureResourcePathFormatIsValid() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    knuddelsHints.registerHints(hints, null);
+    
+    ClassPathResource resource = new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken");
+    assertEquals("/com/knuddels/jtokkit/cl100k_base.tiktoken", resource.getPath(), "Resource path should match the expected format.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("boundary")
+public void confirmSingleResourceRegistration() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    knuddelsHints.registerHints(hints, null);
+    
+    long registeredResourcesCount = hints.resources().streamResources().count();
+    assertEquals(1L, registeredResourcesCount, "Only one resource should be registered to RuntimeHints.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("integration")
+public void methodOverrideAnnotationValidation() {
+    
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    assertDoesNotThrow(() -> knuddelsHints.registerHints(new RuntimeHints(), null), "Method should comply with @Override annotation and RuntimeHintsRegistrar contract.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("invalid")
+public void handleEdgeCaseResourcePaths() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    ClassPathResource incorrectResource = new ClassPathResource("incorrect_path_format.tiktoken");
+    hints.resources().registerResource(incorrectResource);
+    
+    assertFalse(hints.resources().hasResource(new ClassPathResource("/incorrect_path_format.tiktoken")), "Edge-case resource paths should not interfere with expected path registration.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("integration")
+public void dependencyResourceValidation() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    knuddelsHints.registerHints(hints, null);
+    
+    assertTrue(hints.resources().hasResource(new ClassPathResource("/com/knuddels/jtokkit/cl100k_base.tiktoken")), "registerResource method from RuntimeHints.resources() should be invoked.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("invalid")
+public void missingResourceFileHandling() {
+    
+    RuntimeHints hints = new RuntimeHints();
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    Throwable exception = assertThrows(IllegalArgumentException.class, () -> {
+        
+        hints.resources().registerResource(new ClassPathResource("/fake/path.tiktoken"));
+    });
+    assertTrue(exception.getMessage().contains("Could not resolve resource"), "Exception should be thrown when resource file is missing.");
+}
+
+/*ROOST_METHOD_HASH=registerHints_bc6a96ef8a
+ROOST_METHOD_SIG_HASH=registerHints_4964e90a69
+
+*/@Test
+@Tag("invalid")
+public void handleNullRuntimeHintsInput() {
+    
+    KnuddelsRuntimeHints knuddelsHints = new KnuddelsRuntimeHints();
+    
+    assertThrows(NullPointerException.class, () -> knuddelsHints.registerHints(null, null), "Method should throw an exception when RuntimeHints is null.");
+}
+} 

@@ -1,0 +1,836 @@
+package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+import org.mockito.Mockito;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.MockitoAnnotations;
+import java.util.Collections; 
+ public class AiRuntimeHintsTest {
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("valid") public void validPackageWithJsonIncludedClasses() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        assertFalse(result.isEmpty(), "Result should contain references to annotated classes");
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("invalid") public void emptyResultForNonAnnotatedPackage() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        assertTrue(result.isEmpty(), "Result should be empty");
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("invalid") public void handleMissingClassWithGracefulError() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        assertThrows(RuntimeException.class, () -> AiRuntimeHints.findJsonAnnotatedClassesInPackage(packageName),
+                "Expected RuntimeException when package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("valid") public void nestedClassesWithJsonAnnotations() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        assertFalse(result.isEmpty(), "Result should contain references to nested annotated classes");
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("valid") public void detectOnlyJacksonRelatedAnnotations() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        result.forEach(typeReference -> {
+            assertTrue(typeReference.getName().contains("Json"), "All classes should be annotated with Jackson-related annotations");
+        });
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("integration") public void verifyLoggingOfRegisteredClasses() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        assertFalse(result.isEmpty(), "Result should contain references to annotated classes");
+        
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("invalid") public void handleEmptyPackageName() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        assertTrue(result.isEmpty(), "Result should be empty for an empty package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("boundary") public void validateRecordComponentsHandling() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        assertFalse(result.isEmpty(), "Result should contain references to record classes with annotated components");
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("valid") public void handleInheritedAnnotations() {
+        
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        
+        assertNotNull(result, "Result should not be null");
+        result.forEach(typeReference -> {
+            assertTrue(typeReference.getName().contains("Base") || typeReference.getName().contains("Derived"),
+                    "All classes should include inherited annotations");
+        });
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_25dbdef816
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_2d5afaa89e
+
+*/@Test
+    @Tag("valid") public void verifyOverloadedBehaviorWithClassParameter() {
+        
+        Class<?> targetClass = AiRuntimeHints.class; 
+        String package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+ 
+        
+        Set<TypeReference> resultUsingPackageName = AiRuntimeHints.findJsonAnnotatedClassesInPackage(package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+        Set<TypeReference> resultUsingClass = AiRuntimeHints.findJsonAnnotatedClassesInPackage(targetClass.getPackageName());
+        
+        assertEquals(resultUsingPackageName, resultUsingClass,
+                "Both methods should return the same result when targeting the same package org.springframework.ai.aot;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_34e9060116
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_7bbfa07d99
+
+*/@Test
+    @Tag("valid") public void validateValidClassToPackage() {
+        
+        Class<?> validClass = SampleValidClass.class; 
+        String expectedPackageName = validClass.getPackageName();
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(validClass);
+        
+        assertFalse(result.isEmpty(), "Result set should not be empty");
+        result.forEach(typeReference -> 
+            assertEquals(expectedPackageName, typeReference.getName().substring(0, typeReference.getName().lastIndexOf('.')), "Package name should match"));
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_34e9060116
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_7bbfa07d99
+
+*/@Test
+    @Tag("invalid") public void validateInvalidClassToPackage() {
+        
+        Class<?> invalidClass = Mockito.mock(Class.class); 
+        Mockito.when(invalidClass.getPackageName()).thenReturn(""); 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(invalidClass);
+        
+        assertTrue(result.isEmpty(), "Result set should be empty for an invalid class");
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_34e9060116
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_7bbfa07d99
+
+*/@Test
+    @Tag("boundary") public void validateBoundaryScenarioEmptyPackage() {
+        
+        Class<?> emptyPackageClass = Mockito.mock(Class.class); 
+        Mockito.when(emptyPackageClass.getPackageName()).thenReturn(null); 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(emptyPackageClass);
+        
+        assertTrue(result.isEmpty(), "Result set should be empty for a null package org.springframework.ai.aot;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
+import org.mockito.Mockito;
+import org.springframework.aot.hint.TypeReference;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+
+    }
+
+/*ROOST_METHOD_HASH=findJsonAnnotatedClassesInPackage_34e9060116
+ROOST_METHOD_SIG_HASH=findJsonAnnotatedClassesInPackage_7bbfa07d99
+
+*/@Test
+    @Tag("integration") public void validateActualIntegrationScenario() {
+        
+        Class<?> actualPackageClass = RealIntegrationClass.class; 
+        
+        Set<TypeReference> result = AiRuntimeHints.findJsonAnnotatedClassesInPackage(actualPackageClass);
+        
+        assertFalse(result.isEmpty(), "Result set should not be empty for a valid integration test case");
+        result.forEach(typeReference -> 
+            assertNotNull(typeReference.getName(), "TypeReference name should not be null"));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("valid") public void findClassesMatchingFilterInPackage() {
+        
+        String validPackageName = "org.example.test";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        ClassPathScanningCandidateComponentProvider provider = mock(ClassPathScanningCandidateComponentProvider.class);
+        when(provider.findCandidateComponents(validPackageName))
+                .thenReturn(Set.of(mockTypeReference("org.example.test.DummyClass")));
+        
+        Set<TypeReference> result = AiRuntimeHints.findClassesInPackage(validPackageName, typeFilter);
+        
+        assertEquals(1, result.size());
+        assertTrue(result.contains(TypeReference.of("org.example.test.DummyClass")));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("valid") public void findClassesInEmptyPackage() {
+        
+        String emptyPackageName = "org.example.empty";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        ClassPathScanningCandidateComponentProvider provider = mock(ClassPathScanningCandidateComponentProvider.class);
+        when(provider.findCandidateComponents(emptyPackageName)).thenReturn(Collections.emptySet());
+        
+        Set<TypeReference> result = AiRuntimeHints.findClassesInPackage(emptyPackageName, typeFilter);
+        
+        assertTrue(result.isEmpty());
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("invalid") public void handleInvalidPackageName() {
+        
+        String invalidPackageName = "invalid.package org.springframework.ai.aot;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.MockitoAnnotations;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.core.type.filter.TypeFilter;
+import java.util.Collections;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.*;
+import java.lang.reflect.Executable;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aot.hint.TypeReference;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+
+ 
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        
+        assertThrows(RuntimeException.class, () -> AiRuntimeHints.findClassesInPackage(invalidPackageName, typeFilter));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("valid") public void debugLoggingWhenEnabled() {
+        
+        String validPackageName = "org.example.test";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        log.setDebugEnabled(true); 
+        
+        Set<TypeReference> result = AiRuntimeHints.findClassesInPackage(validPackageName, typeFilter);
+        
+        assertFalse(result.isEmpty());
+        verify(log).debug(anyString()); 
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("boundary") public void returnedSetIsImmutable() {
+        
+        String validPackageName = "org.example.test";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        
+        Set<TypeReference> result = AiRuntimeHints.findClassesInPackage(validPackageName, typeFilter);
+        
+        assertThrows(UnsupportedOperationException.class, () -> result.add(TypeReference.of("invalid.type")));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("invalid") public void handleNullPackageName() {
+        
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        
+        assertThrows(NullPointerException.class, () -> AiRuntimeHints.findClassesInPackage(null, typeFilter));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("invalid") public void handleNullTypeFilter() {
+        
+        String validPackageName = "org.example.test";
+        
+        assertThrows(RuntimeException.class, () -> AiRuntimeHints.findClassesInPackage(validPackageName, null));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("invalid") public void validateMalformedClassNames() {
+        
+        String validPackageName = "org.example.test";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        ClassPathScanningCandidateComponentProvider provider = mock(ClassPathScanningCandidateComponentProvider.class);
+        when(provider.findCandidateComponents(validPackageName))
+                .thenReturn(Set.of(mockTypeReferenceWithMalformedName()));
+        
+        assertThrows(RuntimeException.class, () -> AiRuntimeHints.findClassesInPackage(validPackageName, typeFilter));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("integration") public void testPerformanceUnderHeavyLoad() {
+        
+        String heavyLoadPackageName = "org.example.large";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        ClassPathScanningCandidateComponentProvider provider = mock(ClassPathScanningCandidateComponentProvider.class);
+        var mockLargeSet = Collections.nCopies(10000, mockTypeReference("org.example.large.Class"));
+        when(provider.findCandidateComponents(heavyLoadPackageName)).thenReturn(Set.copyOf(mockLargeSet));
+        
+        long startTime = System.currentTimeMillis();
+        Set<TypeReference> result = AiRuntimeHints.findClassesInPackage(heavyLoadPackageName, typeFilter);
+        long endTime = System.currentTimeMillis();
+        
+        assertEquals(10000, result.size());
+        assertTrue((endTime - startTime) < 2000); 
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/@Test
+    @Tag("valid") public void handleNestedClassesCorrectly() {
+        
+        String nestedPackageName = "org.example.nested";
+        TypeFilter typeFilter = new AnnotationTypeFilter(JsonInclude.class);
+        ClassPathScanningCandidateComponentProvider provider = mock(ClassPathScanningCandidateComponentProvider.class);
+        when(provider.findCandidateComponents(nestedPackageName))
+                .thenReturn(Set.of(mockTypeReference("org.example.nested.OuterClass$InnerClass")));
+        
+        Set<TypeReference> result = AiRuntimeHints.findClassesInPackage(nestedPackageName, typeFilter);
+        
+        assertEquals(1, result.size());
+        assertTrue(result.contains(TypeReference.of("org.example.nested.OuterClass$InnerClass")));
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/ private TypeReference mockTypeReference(String className) {
+        
+        return TypeReference.of(className);
+    }
+
+/*ROOST_METHOD_HASH=findClassesInPackage_1bff6d9786
+ROOST_METHOD_SIG_HASH=findClassesInPackage_caabc0c4e2
+
+*/ private TypeReference mockTypeReferenceWithMalformedName() {
+        
+        return TypeReference.of(""); 
+    }
+} 

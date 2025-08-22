@@ -1,0 +1,129 @@
+package org.springframework.ai.aot;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
+import org.mockito.Mockito;
+import org.springframework.aot.hint.MemberCategory;
+import org.springframework.aot.hint.RuntimeHints;
+import org.junit.jupiter.api;
+import org.springframework.ai.tool.execution.DefaultToolCallResultConverter;
+import org.springframework.aot.hint.RuntimeHintsRegistrar;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable; 
+ public class ToolRuntimeHintsTest {
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("invalid")
+public void registerHintsWithNullHints() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    
+    ClassLoader classLoader = null;
+    RuntimeHints hints = null;
+    
+    try {
+        toolRuntimeHints.registerHints(hints, classLoader);
+    } catch (Exception e) {
+        throw new AssertionError("Method must not throw any exception when hints is null.", e);
+    }
+}
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("valid")
+public void registerHintsWithNullClassLoader() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    RuntimeHints hints = Mockito.mock(RuntimeHints.class);
+    
+    ClassLoader classLoader = null;
+    toolRuntimeHints.registerHints(hints, classLoader);
+    verify(hints.reflection()).registerType(eq(DefaultToolCallResultConverter.class), eq(MemberCategory.values()));
+}
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("boundary")
+public void registerHintsWithAllMemberCategories() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    RuntimeHints hints = new RuntimeHints();
+    toolRuntimeHints.registerHints(hints, null);
+    for (MemberCategory memberCategory : MemberCategory.values()) {
+        
+        if (memberCategory == null) {
+            throw new AssertionError("MemberCategory cannot contain null values.");
+        }
+    }
+}
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("valid")
+public void registerHintsExecutionWithoutErrors() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    RuntimeHints hints = Mockito.mock(RuntimeHints.class);
+    
+    ClassLoader classLoader = null;
+    try {
+        toolRuntimeHints.registerHints(hints, classLoader);
+    } catch (Exception e) {
+        throw new AssertionError("Method execution must not throw any exception under normal conditions.", e);
+    }
+    verify(hints.reflection()).registerType(eq(DefaultToolCallResultConverter.class), eq(MemberCategory.values()));
+}
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("valid")
+public void registerHintsCorrectClassReflection() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    RuntimeHints hints = Mockito.mock(RuntimeHints.class);
+    toolRuntimeHints.registerHints(hints, null);
+    verify(hints.reflection()).registerType(eq(DefaultToolCallResultConverter.class), eq(MemberCategory.values()));
+}
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("boundary")
+public void registerHintsWithEmptyRuntimeHints() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    
+    RuntimeHints hints = new RuntimeHints();
+    toolRuntimeHints.registerHints(hints, null);
+    
+    try {
+        hints.reflection().registerType(DefaultToolCallResultConverter.class, MemberCategory.values());
+    } catch (Exception ignored) {
+        throw new AssertionError("Reflection for DefaultToolCallResultConverter class should be defined successfully.");
+    }
+}
+
+/*ROOST_METHOD_HASH=registerHints_a64fc3b94a
+ROOST_METHOD_SIG_HASH=registerHints_4cbaa06045
+
+*/@Test
+@Tag("boundary")
+public void registerHintsWithEmptyMemberCategory() {
+    ToolRuntimeHints toolRuntimeHints = new ToolRuntimeHints();
+    RuntimeHints hints = Mockito.mock(RuntimeHints.class);
+    ToolRuntimeHints toolSpy = Mockito.spy(toolRuntimeHints);
+    
+    doReturn(new MemberCategory[0]).when(toolSpy).getEnum();
+    try {
+        toolSpy.registerHints(hints, null);
+    } catch (Exception ex) {
+        throw new AssertionError("Method must handle empty MemberCategory enum without errors.", ex);
+    }
+    verify(hints.reflection(), never()).registerType(any(), any());
+}
+} 
